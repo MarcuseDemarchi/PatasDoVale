@@ -1,0 +1,50 @@
+Artisan disponibiliza uma serie de comandos que nos auxilia para desenvolvimento:
+	--> Para iniciar o servidor pode-se utilizar o comando php artisan serve
+Comandos para ver os comandos do artisan
+	--> php artisan list
+
+---------------------------------------------------------------------------------------
+# Trabalhando com rotas no Laravel
+	-> Para trabalhar com parametros estaticos no laravel
+	----> Pode-se utilizar o conchetes dentro da rota para indicar que é um parametro estatico
+		ex : Route::view('/home','home',['name' => 'Marcus André Geacomo Demarchi'])
+	Para receber este valor dentro do nossa view é necessario apenas a utilização de chaves e de cifrão
+		ex : {{ $name }}
+		
+	-> Parametros dinamicos no laravel, trabalhando com URL
+	----> Pode-se utilizar o seguinte comando:
+		ex:	Route::get('/home/{name}', function($name){
+				return view('home', ['name' => $name]);
+			});
+		Importante ressaltar que ao fazer desta maneira é esperado por padrão alguma rota, sendo assim,
+		para que não ocorra o famoso error 404, é necessario fazer desta maneira:
+		ex: Route::get('/home/{name?}', function($name = null){
+				return view('home', ['name' => $name]);
+			});
+		Foi adicionado o "?" dentro de name e passado para o escopo da função um valor default caso não seja alterado
+		o valor da variavel
+		
+	-> Utilizando filtros de URL - REGEX
+	----> É possivel filtrar os enderços utilizando o regex
+		ex: Route::get('/home/{name?}', function($name = null){
+				return view('home', ['name' => $name]);
+			}) -> where('name','[A-Za-z]+');
+		Desta maneira é possivel fazer também com numeros
+			-> where('name','[\d]+');
+			
+	-> Dando nomes as rotas para ser possivel reacessa-las por outros local:
+	----> 
+		ex: Route::get('/home/{name?}', function($name = null){
+				return view('home', ['name' => $name]);
+		    })->name('home-index');	
+		
+		Em nossa view agora é necessario apenas chama-la
+		<a href="{{ Route('home-index')}}"> Clique aqui </a>
+		
+	-> Utilizando função propria do laravel para se caso não encontrar a rota
+	----> É possivel utilizar uma função padrão do laravel para se caso não encontrar nossa rota ele aprentar um erro padronizado
+---------------------------------------------------------------------------------------
+# Trabalhando com controller no Laravel
+	-> Irá fazer o tratamento de todos os dados do nosso site, serve para tirar toda a complexidade de nosso codigo,
+	criando nosso controlador
+	----> php artisan make:controller nomedocontrolador
