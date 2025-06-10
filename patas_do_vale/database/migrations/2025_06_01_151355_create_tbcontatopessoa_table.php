@@ -12,8 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tbcontatopessoa', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id('ctpcodigo');
+            $table->unsignedSmallInteger('tcocodigo');
+            $table->foreign('tcocodigo')->references('tcocodigo')->on('tbtipocontato')->onDelete('restrict');
+            $table->unsignedBigInteger('pescodigo');
+            $table->foreign('pescodigo')->references('pescodigo')->on('tbpessoa')->onDelete('cascade');            
+            $table->string('ctpdescricao', 240);
         });
     }
 

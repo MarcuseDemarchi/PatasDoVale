@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tbpais', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('tbcidade', function (Blueprint $table) {
+            $table->id('cidcodigo');
+            $table->string('cidnome', 100);
+            $table->unsignedSmallInteger('estcodigo');
+            $table->foreign('estcodigo')->references('estcodigo')->on('tbestado')->onDelete('restrict');
         });
     }
 
@@ -22,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tbpais');
+        Schema::dropIfExists('tbcidade');
     }
 };

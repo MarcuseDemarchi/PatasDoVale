@@ -12,8 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tbpessoa', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id('pescodigo');
+            $table->string('pesnome',255)->nullable(false);
+            $table->timestamp('pesdatanascimento')->nullable(false);
+            $table->foreignId('cidcodigo')->constrained('tbcidade', 'cidcodigo')->onDelete('restrict');
         });
     }
 

@@ -1,7 +1,29 @@
+---------------------------------------------------------------------------------------
+Para iniciar a aplicação existem algumas etapas a serem realizadas, sendo estas:
+	Composer install
+	npm install
+	Copy do .env para que não seja sobreescrita os valores
+	php artisan migrate
+	Php artisan key:generate
+	
+	composer require blade-ui-kit/blade-icons --ICONES
+	php artisan vendor:publish --tag=blade-icons --Publicacao
+	
+	php artisan serve
+	
+	-->ICONS<--
+	composer require codeat3/blade-simple-line-icons
+---------------------------------------------------------------------------------------
 Artisan disponibiliza uma serie de comandos que nos auxilia para desenvolvimento:
 	--> Para iniciar o servidor pode-se utilizar o comando php artisan serve
-Comandos para ver os comandos do artisan
+Comandos
+	Para ver os comandos do artisan
 	--> php artisan list
+	Caso tenha alterado alguma tabela do migrate, basta rodar o comando
+	--> php artisan migrate:reset 
+	Para ter acesso ao arquivo de criptografia de senhas
+	--> php artisan config:publish hashing 
+
 
 ---------------------------------------------------------------------------------------
 # Trabalhando com rotas no Laravel
@@ -48,3 +70,36 @@ Comandos para ver os comandos do artisan
 	-> Irá fazer o tratamento de todos os dados do nosso site, serve para tirar toda a complexidade de nosso codigo,
 	criando nosso controlador
 	----> php artisan make:controller nomedocontrolador
+---------------------------------------------------------------------------------------
+# Migrations
+	-> Serve para criar a pré estrutura do banco de dados utilizando defines, isso permite que mais pessoas consigam trabalhar
+	no projeto ao mesmo tempo....
+	
+	## php artisan migrate
+	
+	-> Para criar a migration :
+	--> php artisan make:migration tbXXXX
+		
+--------------------------------------------------------------------------------------
+-> Criacao de autenticaçao para usuario:
+
+	composer require laravel/breeze
+	php artisan breeze:install
+
+--------------------------------------------------------------------------------------
+-> Utilização de components para desenvolvimento de views:
+
+
+--------------------------------------------------------------------------------------
+-> Para que os erros apareçam em portugues e não em ingles é necessario fazer algumas alteraçoes, sendo estas :
+--> no arquivo .env deve-se alterar:
+----- APP_LOCALE=en PARA APP_LOCALE=pt_BR
+	Rodar esse comando para publicar arquivos de erros
+	php artisan lang:publish
+
+--------------------------------------------------------------------------------------
+-> No campo HTML estava ocorrendo um problema, onde caso fosse cadastrar um usuário e o mesmo apresenta erros ao enviar o formulário
+após a ocorrencia do erro os restantes do valores estavam sendo apagados, isso é um problema, para resolver isso
+foi adicionado o seguinte campo dentro do formulario:
+--> <input type="text" name='name' placeholder="Seu Nome" value="{{old('name')}}" class="@error('name') field_error @enderror"/>
+

@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tbtipocontato', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('tbpais', function (Blueprint $table) {
+            $table->smallIncrements('paicodigo'); // Chave primária smallint auto-incrementada
+            $table->string('painome', 100);
+            $table->char('paisigla', 2);
         });
     }
 
@@ -22,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tbtipocontato');
+        Schema::dropIfExists('tbpais');
     }
 };

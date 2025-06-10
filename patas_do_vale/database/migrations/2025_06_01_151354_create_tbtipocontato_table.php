@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tbestado_create', function (Blueprint $table) {
-            $table->id();
+        Schema::create('tbtipocontato', function (Blueprint $table) {
+            $table->smallIncrements('tcocodigo'); 
+            $table->string('tcodescricacao', 240); 
             $table->timestamps();
         });
     }
@@ -22,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tbestado_create');
+        Schema::dropIfExists('tbtipocontato');
     }
 };

@@ -1,0 +1,236 @@
+* {
+    margin : 0;
+    padding: 0;
+    font-family: 'Roboto';
+}
+
+a{
+    text-decoration: none;
+}
+
+body{
+    background-color: var(--f-color);
+}
+
+:root{
+    --a-color : #111111;
+    --b-color : #1e1e1e;
+    --c-color : #01FE87;
+    --d-color : #FAFAFA;
+    --e-color : #777777;
+    --f-color : #333333;
+    --g-color : #222222;
+    --h-color : #b9d6dc;
+    
+    --shadow-color : rgba(51,51,51,.16);
+}
+
+header{
+    height: 80px;
+    background-color: var(--a-color);
+    display: flex;
+    justify-content: space-between; /* deixa um espaço entre os dois filhos*/
+    align-items: center;
+}
+
+header, 
+section.home_pg,
+section.form_pg{
+    padding : 0px 15px;
+}
+
+header div.head_left img{
+    margin-left: 5vw;
+    margin-top: 12vw;
+    width: 112px;
+    height: 112px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border : 1px solid var(--h-color);
+    border-radius: 5px;
+    padding: 10px 15px;
+    background-color: transparent;
+    color: var(--h-color);
+    text-transform: uppercase;
+}
+
+.head_right{
+    display: flex;
+}
+
+button.btn_login{
+    background-color: var(--h-color);
+    color: var(--a-color);
+    margin-left: 15px;
+}
+
+button:hover{
+    cursor: pointer;
+    background-color: var(--h-color);
+    color: var(--a-color);
+    opacity: .9;
+    transition-duration: 500ms;
+}
+
+button.btn_fullwidth{
+    width: 100%;
+}
+
+p.subtitle > span{
+    color: var(--h-color)
+}
+
+section.home_pg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1.title{
+    color: var(--d-color);
+    font-size: 32px;
+    margin-bottom: 25px;
+}
+
+h1.title,
+p.subtitle{
+    text-align: center;
+}
+
+p.subtitle{
+    color: var(--e-color);
+    font-size: 18px;
+    margin-bottom: 50px;
+    font-weight: normal;
+}
+
+section.form_pg div.form_left{
+    width: 100%;
+}
+
+section.form_pg div.form_right{
+    /* width: 100%; */
+    background: var(--b-color);
+    border: 1px solid var(--f-color);
+    border-radius: 5px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+section.form_pg div.form_right form{
+    display: flex;
+    flex-direction: column;
+}
+
+section.form_pg,
+section.home_pg{
+    background: linear-gradient(to bottom,var(--a-color),var(--e-color));
+    height: calc(100vh - 80px);
+}
+
+section.form_pg{
+    padding-top: 75px !important;
+    display: flex;
+    flex-direction: column;
+}
+
+section.form_pg h1.title,
+section.form_pg p.subtitle 
+{
+    text-align: left;
+}
+
+div.form_right img{
+    border-radius: 50%;
+    width : 40%;
+    margin-top:10px;
+}
+
+div.form_right form input{
+    background:var(--g-color);
+    border: 1px solid var(--g-color);
+    border-radius: 5px;
+    color: var(--e-color);
+    padding: 15px 20px;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+div.form_right form input:focus{
+    background: var(--f-color);
+    outline: none;
+}
+
+div.form_right form span{
+    color: var(--e-color);
+    font-size: 16px;
+    text-align: right;
+    margin-bottom: 30px;
+}
+
+div.form_right form span a{
+    color:var(--h-color);
+    text-decoration: none;
+}
+
+div.form_right form span a:hover{
+   text-decoration: underline; 
+}
+
+@media (min-width: 900px){
+    header,
+    section.home_pg,
+    section.form_pg{
+        padding: 0px 30px;
+    }
+
+    header div.head_left img{
+        margin-left: 3vw;
+        margin-top: 8vw;
+    }
+
+    section.form_pg{
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    section.form_pg div.form_left{
+        width: 60%;
+    }
+
+    section.form_pg div.form_right{
+        width: 40%;
+    }
+
+    section.form_pg div.form_right form{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    button{
+        padding: 7.5px 15px;
+    }
+}
+
+@media (min-width:1200px){
+    header,
+    section.home_pg,
+    section.form_pg{
+        padding: 0px 60px;
+    }
+
+    header div.head_left img{
+        margin-left: 0.5vw;
+        margin-top: 4vw;
+    }
+}

@@ -12,8 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tbdoacaoanimal', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id('doacodigo');
+            $table->unsignedBigInteger('pescodigo');
+            $table->foreign('pescodigo')->references('pescodigo')->on('tbpessoa')->onDelete('restrict');
+            $table->unsignedBigInteger('anicodigo');
+            $table->foreign('anicodigo')->references('anicodigo')->on('tbanimais')->onDelete('restrict');
+            $table->date('doadata');
+            $table->string('doaobservacao', 255)->nullable();
         });
     }
 
