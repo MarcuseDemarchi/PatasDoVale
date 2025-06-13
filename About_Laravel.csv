@@ -103,3 +103,6 @@ após a ocorrencia do erro os restantes do valores estavam sendo apagados, isso 
 foi adicionado o seguinte campo dentro do formulario:
 --> <input type="text" name='name' placeholder="Seu Nome" value="{{old('name')}}" class="@error('name') field_error @enderror"/>
 
+--------------------------------------------------------------------------------------
+-> Cookie e sesão Acession
+-->Auth::Atempt --> compara a senha com a senha do banco pura, considerando a criptografia

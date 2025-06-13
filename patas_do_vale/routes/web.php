@@ -2,25 +2,21 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthController;
 
 Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/login', function(){
-    return view('login');
-});
-
 Route::get('/create_account', [UserController::class,'create'])->name('create_account');
 Route::post('/create_account',[UserController::class,'store'])->name('insert_account');
 
-Route::get('/login', function(){  
-    return view('login');
-})->name('login');
+Route::get('/login', [AuthController::class,'index'])->name('login');
+Route::post('/login', [AuthController::class,'loginAttempt'])->name('auth');
 
-Route::post('/login', function(){  
-    return 'Autenticaçao do usuario';
-})->name('auth');
+Route::get('/dashboard', function(){  
+    return 'Login efetuado com sucesso';
+})->name('dashboard');
 
 Route::get('/forgot_password', function(){  
     return 'Caso esqueceu a senha';

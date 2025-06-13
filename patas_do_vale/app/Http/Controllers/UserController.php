@@ -32,9 +32,11 @@ class UserController extends Controller
         $validated = $request->validate([
             'name' => 'required|min:2|max:200',
             'email' => 'required|min:2|max:200|email',
-            'password' => 'required|min:2|max:200'
+            'password' => 'required|min:7|max:200'
         ]);    
         
+        $strongPassword = $user->validatePassword($validated['password']);
+
         if ($user->where('email',$validated['email'])->exists()){
             return 'Atenção: O email em questão ja esta sendo utilizado!';
         }else{
