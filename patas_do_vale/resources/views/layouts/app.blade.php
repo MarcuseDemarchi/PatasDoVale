@@ -12,5 +12,6 @@
         @include('components.header')
 
         @yield('content','Nenhum conteudo instanciado')
+        @stack('scripts')
     </body>
 </html>

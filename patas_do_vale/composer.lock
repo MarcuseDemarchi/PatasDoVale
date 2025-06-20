@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e14df4d1b1ccd2220710cbfa23d04193",
+    "content-hash": "28b1a3191a7f2aa1bfd333923408f144",
     "packages": [
         {
             "name": "blade-ui-kit/blade-icons",
@@ -215,6 +215,78 @@
                 }
             ],
             "time": "2024-02-09T16:56:22+00:00"
+        },
+        {
+            "name": "codeat3/blade-fluentui-system-icons",
+            "version": "1.34.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/codeat3/blade-fluentui-system-icons.git",
+                "reference": "e89cb1579ad1051ebc9747f77ae6c5798aae4027"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/codeat3/blade-fluentui-system-icons/zipball/e89cb1579ad1051ebc9747f77ae6c5798aae4027",
+                "reference": "e89cb1579ad1051ebc9747f77ae6c5798aae4027",
+                "shasum": ""
+            },
+            "require": {
+                "blade-ui-kit/blade-icons": "^1.1",
+                "illuminate/support": "^8.0|^9.0|^10.0|^11.0|^12.0",
+                "php": "^7.4|^8.0"
+            },
+            "require-dev": {
+                "codeat3/blade-icon-generation-helpers": "^0.10",
+                "codeat3/phpcs-styles": "^1.0",
+                "orchestra/testbench": "^6.0|^7.0|^8.0|^9.0|^10.0",
+                "phpunit/phpunit": "^9.0|^10.5|^11.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Codeat3\\BladeFluentUiSystemIcons\\BladeFluentUiSystemIconsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Codeat3\\BladeFluentUiSystemIcons\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Swapnil Sarwe",
+                    "homepage": "https://swapnilsarwe.com"
+                },
+                {
+                    "name": "Dries Vints",
+                    "homepage": "https://driesvints.com"
+                }
+            ],
+            "description": "A package to easily make use of FluentUI System Icons in your Laravel Blade views.",
+            "homepage": "https://github.com/codeat3/blade-fluentui-system-icons",
+            "keywords": [
+                "FluentUI",
+                "blade",
+                "icons",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/codeat3/blade-fluentui-system-icons/issues",
+                "source": "https://github.com/codeat3/blade-fluentui-system-icons/tree/1.34.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/swapnilsarwe",
+                    "type": "github"
+                }
+            ],
+            "time": "2025-02-25T07:30:15+00:00"
         },
         {
             "name": "codeat3/blade-simple-line-icons",
@@ -1206,6 +1278,67 @@
                 }
             ],
             "time": "2025-02-03T10:55:03+00:00"
+        },
+        {
+            "name": "khatabwedaa/blade-css-icons",
+            "version": "1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/khatabwedaa/blade-css-icons.git",
+                "reference": "20bc7a88fb87ffec520e2721d3291290909dd367"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/khatabwedaa/blade-css-icons/zipball/20bc7a88fb87ffec520e2721d3291290909dd367",
+                "reference": "20bc7a88fb87ffec520e2721d3291290909dd367",
+                "shasum": ""
+            },
+            "require": {
+                "blade-ui-kit/blade-icons": "^1.6",
+                "illuminate/support": "^9.0|^10.0|^11.0|^12.0",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^7.0|^8.0|^9.0|^10.0",
+                "phpunit/phpunit": "^9.0|^10.5|^11.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Khatabwedaa\\BladeCssIcons\\BladeCssIconsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Khatabwedaa\\BladeCssIcons\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Khatab Wedaa",
+                    "email": "khatabwedaa@gmail.com",
+                    "homepage": "https://twitter.com/khatabwedaa",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A package to easily make use of Css.gg in your Laravel Blade views.",
+            "homepage": "https://github.com/khatabwedaa/blade-css-icons",
+            "keywords": [
+                "Css.gg",
+                "blade",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/khatabwedaa/blade-css-icons/issues",
+                "source": "https://github.com/khatabwedaa/blade-css-icons/tree/1.5.0"
+            },
+            "time": "2025-02-19T10:49:29+00:00"
         },
         {
             "name": "laravel/breeze",

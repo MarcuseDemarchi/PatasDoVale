@@ -11,13 +11,13 @@
             <form action="{{route('auth')}}" method="post">
                 @csrf
                 <input type="email" name='email' placeholder="Email"/>
-                <input type="password" name='name' placeholder="senha"/>
+                <input type="password" name='password' placeholder="senha"/>
 
                 <span><a href="{{route('forgot_password')}}">Esqueceu sua senha?</a></span>
 
                 <x-button class='btn_fullwidth' routePage='auth'>                                        
                     Login
-                    <x-simpleline-login />
+                    <x-simpleline-login/>
                 </x-button>
 
                 @if (session('status'))

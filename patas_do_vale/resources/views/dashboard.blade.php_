@@ -1,0 +1,48 @@
+@extends('layouts.app')
+
+@section('content') 
+    <section class="dash_pg">   
+        <div class="dash_header">
+            <x-button class='btn_login' routePage='#' id="btn_cadastrar_animal">
+                Cadastrar animal
+                <x-fluentui-animal-dog-24-o />
+            </x-button>            
+        </div>        
+    </section>
+
+    <x-modal id="box_modal">
+        <div class="modal_header">
+            <h1>Cadastrar animal</h1>
+            <x-css-close id="close_classe_modal"/>
+        </div>
+
+        <div class="modal_content">
+            <form action="" method="post">
+                @csrf
+                @error('aninome')
+                    <p class="field_error">{{ $message }}</p>
+                @enderror
+                <input type="text" name="aninome" placeholder="Nome animal" value="{{old('name')}}" class="@error('name') field_error @enderror"/>
+                <x-button class='btn_fullwidth' routePage=''>Cadastrar animal</x-button> 
+            </form>
+        </div>
+    </x-modal>
+@endsection
+
+@push('scripts')
+    <script>
+        const btnOpenModal = document.getElementById('btn_cadastrar_animal');
+        const boxModal = document.getElementById('box_modal');
+        const iconCloseModal = document.getElementById('close_classe_modal');
+
+        btnOpenModal.addEventListener('click', (event) => {
+            event.preventDefault();
+            boxModal.classList.add('opened');
+        });
+
+        iconCloseModal.addEventListener('click', (event) => {
+            event.preventDefault();
+            boxModal.classList.remove('opened');
+        });
+    </script>
+@endpush

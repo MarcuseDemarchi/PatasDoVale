@@ -10,24 +10,27 @@
             <img src="{{asset('images/logo.png')}}" alt="logo" title="logo"/>
             <form action="{{route('insert_account')}}" method="post">
                 @csrf
-                <input type="text" name='name' placeholder="Seu Nome" value="{{old('name')}}" class="@error('name') field_error @enderror"/>
                 @error('name')
-                    <p>{{ $message }}</p>
+                    <p class="field_error">{{ $message }}</p>
                 @enderror
+                <input type="text" name="name" placeholder="Seu nome" value="{{old('name')}}" class="@error('name') field_error @enderror"/>
 
-                <input type="email" name='email' placeholder="Seu Email" value="{{old('email')}}"/>
                 @error('email')
-                    <p>{{ $message }}</p>
-                @enderror
+                    <p class="field_error">{{ $message }}</p>
+                 @enderror
+                <input type="text" name="email" placeholder="Seu email" value="{{old('email')}}" class="@error('email') field_error @enderror" />
 
-                <input type="password" name='password' placeholder="Sua senha" value="{{old('password')}}"/>
                 @error('password')
-                    <p>{{ $message }}</p>
+                    <p class="field_error">{{ $message }}</p>
                 @enderror
+                <input type="password" name="password" placeholder="Sua senha" value="{{old('password')}}" class="@error('password') field_error @enderror" />
 
                 <span>Já tem conta? <a href="{{route('login')}}">Entrar</a></span>
 
                 <x-button class='btn_fullwidth' routePage='insert_account'>Criar conta</x-button>
+                @if(@session('status'))
+                    <span class="txt_sucess">{{session('status')}}</span>
+                @endif                
             </form>
         </div>
     </section>

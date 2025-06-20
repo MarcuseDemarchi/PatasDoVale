@@ -38,13 +38,13 @@ class UserController extends Controller
         $strongPassword = $user->validatePassword($validated['password']);
 
         if ($user->where('email',$validated['email'])->exists()){
-            return 'Atenção: O email em questão ja esta sendo utilizado!';
+            return back()->withInput()->withErrors(['email','O campo email ja foi cadastrado!']);
         }else{
             $user = $user->fill($validated); 
             $user->password = Hash::make($validated['password']);
             $user->save();
 
-            return 'Usuario cadastrado com sucesso';
+            return back()->with('Status','Conta criada com sucesso!');
         }    
     }
 

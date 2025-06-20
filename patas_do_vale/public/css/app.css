@@ -21,7 +21,7 @@ body{
     --f-color : #333333;
     --g-color : #222222;
     --h-color : #b9d6dc;
-    
+    --i-color : red;
     --shadow-color : rgba(51,51,51,.16);
 }
 
@@ -35,6 +35,7 @@ header{
 
 header, 
 section.home_pg,
+section.dash_pg,
 section.form_pg{
     padding : 0px 15px;
 }
@@ -62,6 +63,63 @@ button{
 
 .head_right{
     display: flex;
+}
+
+header div.head_right div.menu_profile{
+    position: relative;
+    z-index: 99;
+}
+
+div.menu_profile div.user_picture{
+    background: var(--a-color);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid var(--f-color);
+    box-shadow: 0px 3px 6px var(--g-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: var(--d-color);
+    cursor: pointer;
+}
+
+header div.head_right div.menu_profile nav{
+    background: var(--b-color);
+    position: absolute;
+    right: 0;
+    top: 51px;
+    width: 175px;
+    border-radius: 5px;
+    border:1px solid var(--f-color);
+    box-shadow: 0px 3px 6px var(--g-color);
+    display: none;
+}
+
+header div.head_right div.menu_profile:hover nav{
+    display: block;
+}
+
+div.head_right nav div.user_infos{
+    padding: 10px 15px;
+    color: var(--e-color);
+    border-bottom: 1px solid var(--g-color);
+}
+
+div.head_right nav ul{
+    list-style-type: none;
+    padding-bottom: 5px;
+}
+
+div.head_right nav ul li a{
+    display: block;
+    padding: 10px 15px;
+    color: var(--d-color);
+}
+
+div.head_right nav ul li a:hover{
+    background: var(--a-color);
 }
 
 button.btn_login{
@@ -130,13 +188,18 @@ section.form_pg div.form_right form{
 }
 
 section.form_pg,
-section.home_pg{
+section.home_pg,
+section.dash_pg{
     background: linear-gradient(to bottom,var(--a-color),var(--e-color));
     height: calc(100vh - 80px);
 }
 
-section.form_pg{
+section.form_pg,
+section.dash_pg{
     padding-top: 75px !important;
+}
+
+section.form_pg{
     display: flex;
     flex-direction: column;
 }
@@ -153,7 +216,7 @@ div.form_right img{
     margin-top:10px;
 }
 
-div.form_right form input{
+form input{
     background:var(--g-color);
     border: 1px solid var(--g-color);
     border-radius: 5px;
@@ -163,30 +226,166 @@ div.form_right form input{
     margin-bottom: 15px;
 }
 
-div.form_right form input:focus{
+form input:focus{
     background: var(--f-color);
     outline: none;
 }
 
-div.form_right form span{
+form span{
     color: var(--e-color);
     font-size: 16px;
     text-align: right;
     margin-bottom: 30px;
 }
 
-div.form_right form span a{
+form span a{
     color:var(--h-color);
     text-decoration: none;
 }
 
-div.form_right form span a:hover{
+form span a:hover{
    text-decoration: underline; 
+}
+
+form input.field_error{
+    border : 1px solid var(--i-color);
+}
+
+p.field_error{
+    color : var(--i-color);
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+span.txt_sucess{
+    color : var(--c-color);
+    margin-top: 10px;
+    font-size: 15px;
+}
+
+span.txt_error{
+    color : var(--i-color);
+    margin-top: 10px;
+    font-size: 15px;
+}
+
+section.dash_pg div.dash_header{
+    display: flex;
+    justify-content: flex-end;
+}
+
+div.box_modal{
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
+    background: var(--mask-color);
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: none;
+    z-index: 999;
+}
+
+div.box_modal.opened{
+    display: flex;
+}
+
+div.box_modal div.modal{
+    width: 100vw;
+    height: 100vh;
+    background: var(--b-color);
+    animation: open-modal .3s linear forwards;
+}
+
+div.box_modal div.modal div.modal_header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--f-color);
+}
+
+div.box_modal div.modal div.modal_header h1{
+    color: var(--c-color);
+    font-size: 24px;
+    font-weight: normal;
+}
+
+div.box_modal div.modal div.modal_header svg{
+    color: var(--c-color);
+    cursor: pointer;
+}
+
+div.box_modal div.modal div.modal_header,
+div.box_modal div.modal div.modal_content{
+    padding: 25px 15px;
+}
+
+/*Estilo para a listagem dos animais*/
+
+table.table_animais {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 25px;
+}
+
+table.table_animais thead {
+    background-color: var(--b-color);
+}
+
+table.table_animais th,
+table.table_animais td {
+    padding: 12px 15px;
+    border: 1px solid var(--f-color);
+    color: var(--d-color);
+    text-align: left;
+}
+
+table.table_animais tbody tr:nth-child(even) {
+    background-color: var(--g-color);
+}
+
+table.table_animais tbody tr:hover {
+    background-color: var(--a-color);
+    cursor: pointer;
+}
+
+select.dropdown_especie {
+    width: 100%;
+    background: var(--g-color);
+    border: 1px solid var(--g-color);
+    border-radius: 5px;
+    color: var(--e-color);
+    padding: 15px 20px;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+select.dropdown_especie:focus {
+    background: var(--f-color);
+    outline: none;
+}
+
+select.dropdown_especie option {
+    background: var(--b-color);
+    color: var(--d-color);
+}
+
+/* -- FIM -- */
+
+@keyframes open-modal{
+    from {
+        transform: translateY(-100px);
+    }
+
+    to{
+        transform: translateY(0px);
+    }
 }
 
 @media (min-width: 900px){
     header,
     section.home_pg,
+    section.dash_pg,
     section.form_pg{
         padding: 0px 30px;
     }
@@ -219,11 +418,24 @@ div.form_right form span a:hover{
     button{
         padding: 7.5px 15px;
     }
+
+    div.box_modal{
+        justify-content: center;
+        align-items: center;
+    }
+
+    div.box_modal div.modal{
+        width: 550px;
+        height: auto;
+        border: 1px solid var(--f-color);
+        border-radius: 5px;
+    }
 }
 
 @media (min-width:1200px){
     header,
     section.home_pg,
+    section.dash_pg,
     section.form_pg{
         padding: 0px 60px;
     }

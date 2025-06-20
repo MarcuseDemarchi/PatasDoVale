@@ -14,7 +14,10 @@ return new class extends Migration
         Schema::create('tbanimais', function (Blueprint $table) {
             $table->id('anicodigo');
             $table->string('anipelido',255)->nullable(false);
-            $table->smallinteger('aniespecie')->nullable(false);
+        
+            $table->unsignedSmallInteger('aniespecie');
+            $table->foreign('aniespecie')->references('espcodigo')->on('tbespecies')->onDelete('cascade');
+
             $table->decimal('anipeso',total : 4, places : 2)->nullable(false);
             $table->smallinteger('aniporte')->nullable(false)->comment(' 1 - Pequeno porte | 2 - Medio Porte | 3 - Grande Porte');
         });
