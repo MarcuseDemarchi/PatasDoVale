@@ -9,15 +9,21 @@
         </x-button>
     </div>
 
+    <div class="tabs_menu">
+        <a href="{{ route('pessoas.index') }}" class="{{ request()->is('dashboard/pessoas*') ? 'active' : '' }}">Pessoas</a>
+        <a href="{{ route('adocoes.index') }}" class="active">Adoções</a>
+    </div>
+
     {{-- Listagem de Animais --}}
-    <div class="list_animais">
-        <table class="table_animais">
+    <div class="table_listagem">
+        <table class="tables_list">
             <thead>
                 <tr>
                     <th>Nome</th>
                     <th>Peso (kg)</th>
                     <th>Porte</th>
                     <th>Espécie</th>
+                    <th>Adotado?</th> 
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -34,12 +40,30 @@
                         </td>
                         <td>{{ $animal->aniespecie }}</td>
                         <td>
+                            @php
+                                $adotado = \App\Models\DoacaoAnimal::where('anicodigo', $animal->anicodigo)->exists();
+                            @endphp
+                            @if($adotado)
+                                <span style="color: #4caf50; font-weight:bold;">Sim</span>
+                            @else
+                                <span style="color: #f44336; font-weight:bold;">Não</span>
+                            @endif
+                        </td>
+                        <td>
                             <form action="{{ route('animais.destroy', $animal->anicodigo) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn_login">Excluir</button>                               
-                                <button class="btn_login" onclick="abrirModalEdit({{ $animal->anicodigo }}, '{{ $animal->anipelido }}', '{{ $animal->anipeso }}', '{{ $animal->aniporte }}', '{{ $animal->aniespecie }}')">Editar</button>                        
+                                <button class="btn_login">Excluir</button>                                
                             </form>
+
+                            <button class="btn_login" 
+                                onclick="abrirModalEdit({{ $animal->anicodigo }}, 
+                                    '{{ $animal->anipelido }}', 
+                                    '{{ $animal->anipeso }}', 
+                                    '{{ $animal->aniporte }}', 
+                                    '{{ $animal->aniespecie }}')">
+                                Editar
+                            </button>
                         </td>
                     </tr>
                 @endforeach
@@ -117,8 +141,9 @@
 @push('scripts')
 <script>
     function abrirModalEdit(codigo, nome, peso, porte, especie) {
+        const rotaEditar = "{{ route('animais.update', ['id' => 'ANICODIGO']) }}";
         const form = document.getElementById('form_edit');
-        form.action = `/animais/${codigo}`;
+        form.action = rotaEditar.replace('ANICODIGO', codigo);
 
         document.getElementById('edit_nome').value = nome;
         document.getElementById('edit_peso').value = peso;

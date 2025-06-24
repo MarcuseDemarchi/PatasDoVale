@@ -322,29 +322,29 @@ div.box_modal div.modal div.modal_content{
 
 /*Estilo para a listagem dos animais*/
 
-table.table_animais {
+table.tables_list {
     width: 100%;
     border-collapse: collapse;
     margin-top: 25px;
 }
 
-table.table_animais thead {
+table.tables_list thead {
     background-color: var(--b-color);
 }
 
-table.table_animais th,
-table.table_animais td {
+table.tables_list th,
+table.tables_list td {
     padding: 12px 15px;
     border: 1px solid var(--f-color);
     color: var(--d-color);
     text-align: left;
 }
 
-table.table_animais tbody tr:nth-child(even) {
+table.tables_list tbody tr:nth-child(even) {
     background-color: var(--g-color);
 }
 
-table.table_animais tbody tr:hover {
+table.tables_list tbody tr:hover {
     background-color: var(--a-color);
     cursor: pointer;
 }
@@ -368,6 +368,34 @@ select.dropdown_especie:focus {
 select.dropdown_especie option {
     background: var(--b-color);
     color: var(--d-color);
+}
+
+/* ESTILO DA NOSSA BARRA DE NAVEGAÇÃO*/
+.tabs_menu {
+    display: flex;
+    gap: 20px;
+    background: var(--a-color);
+    padding: 10px;
+}
+
+.tabs_menu a {
+    color: var(--h-color);
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    background: var(--g-color);
+    transition: 0.3s;
+}
+
+.tabs_menu a:hover {
+    background: var(--h-color);
+    color: var(--a-color);
+}
+
+.tabs_menu a.active {
+    background: var(--h-color);
+    color: var(--a-color);
+    font-weight: bold;
 }
 
 /* -- FIM -- */

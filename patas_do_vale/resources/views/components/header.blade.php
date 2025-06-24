@@ -11,9 +11,6 @@
                         </div>
                         <ul>
                             <li>
-                                <a href="#">Animais</a>
-                            </li>
-                            <li>
                                 <a href="/logout">Sair</a>
                             </li>
                         </ul>

@@ -5,6 +5,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashBoardController;
 use App\Http\Controllers\AnimalController;
+use App\Http\Controllers\PessoaController;
+use App\Http\Controllers\DoacaoAnimalController;
 
 Route::get('/', function () {
     return view('home');
@@ -23,10 +25,18 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard',[DashBoardController::class,'index'])->name('dashboard');
     Route::get('/animais/{id}', [AnimalController::class, 'show'])->name('animais.show');
 
+    Route::resource('/dashboard/pessoas', PessoaController::class);
+
     Route::post('/animais', [AnimalController::class, 'store'])->name('animais.store');
     Route::delete('/animais/{id}', [AnimalController::class, 'destroy'])->name('animais.destroy');    
     Route::get('/animais/{id}/edit', [AnimalController::class, 'edit'])->name('animais.edit');
     Route::put('/animais/{id}', [AnimalController::class, 'update'])->name('animais.update');
+
+    Route::resource('/dashboard/adocoes', \App\Http\Controllers\DoacaoAnimalController::class)->names('adocoes')->except(['edit', 'update', 'show', 'create']);
+
+    Route::get('/api/cidades/{estado}', function($estado) {
+        return \App\Models\Cidade::where('estcodigo', $estado)->get();
+    });
 });
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
