@@ -10,9 +10,17 @@ class PessoaController extends Controller
 {
     public function index()
     {
-        $pessoas = Pessoa::with('cidade')->get();
-        $estados = Estado::all();
-        return view('pessoas.index', compact('pessoas','estados'));
+        $busca = $request->get('busca');
+        $query = \App\Models\Pessoa::query();
+
+        if ($busca) {
+            $query->where('pesnome', 'like', '%' . $busca . '%');
+        }
+
+        $pessoas = $query->with('cidade')->get();
+        $estados = \App\Models\Estado::all();
+
+        return view('pessoas.index', compact('pessoas', 'estados', 'busca'));
     }
 
     public function create()

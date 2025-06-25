@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreign('anicodigo')->references('anicodigo')->on('tbanimais')->onDelete('restrict');
             $table->date('doadata');
             $table->string('doaobservacao', 255)->nullable();
+            $table->unsignedBigInteger('anicodigo')->index();
         });
     }
 

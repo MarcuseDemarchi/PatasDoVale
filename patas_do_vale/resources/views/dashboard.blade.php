@@ -14,6 +14,15 @@
         <a href="{{ route('adocoes.index') }}" class="active">Adoções</a>
     </div>
 
+    <form method="GET" class="filtro_animais" style="margin-bottom: 20px;">
+        <label for="adotado">Filtrar:</label>
+        <select name="adotado" id="adotado" onchange="this.form.submit()">
+            <option value="todos" {{ $filtro == 'todos' ? 'selected' : '' }}>Todos</option>
+            <option value="adotados" {{ $filtro == 'adotados' ? 'selected' : '' }}>Apenas Adotados</option>
+            <option value="nao_adotados" {{ $filtro == 'nao_adotados' ? 'selected' : '' }}>Apenas Não Adotados</option>
+        </select>
+    </form>
+
     {{-- Listagem de Animais --}}
     <div class="table_listagem">
         <table class="tables_list">
@@ -39,11 +48,8 @@
                             @endif
                         </td>
                         <td>{{ $animal->aniespecie }}</td>
-                        <td>
-                            @php
-                                $adotado = \App\Models\DoacaoAnimal::where('anicodigo', $animal->anicodigo)->exists();
-                            @endphp
-                            @if($adotado)
+                        <td>                            
+                            @if(in_array($animal->anicodigo, $animaisAdotados))
                                 <span style="color: #4caf50; font-weight:bold;">Sim</span>
                             @else
                                 <span style="color: #f44336; font-weight:bold;">Não</span>

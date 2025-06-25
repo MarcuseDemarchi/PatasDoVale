@@ -9,10 +9,16 @@
         </x-button>
     </div>
 
-<div class="tabs_menu">
-    <a href="{{ route('dashboard') }}">Animais</a>
-    <a href="{{ route('adocoes.index') }}" class="active">Adoções</a>
-</div>
+    <div class="tabs_menu">
+        <a href="{{ route('dashboard') }}">Animais</a>
+        <a href="{{ route('adocoes.index') }}" class="active">Adoções</a>
+    </div>
+
+    <form method="GET" class="filtro_animais" style="margin-bottom: 20px;">
+        <label for="busca">Pesquisar pessoa:</label>
+        <input type="text" name="busca" id="busca" value="{{ $busca ?? '' }}" placeholder="Digite o nome..." />
+        <button type="submit" class="btn_login">Buscar</button>
+    </form>
 
     <div class="list_animais">
         <table class="tables_list">

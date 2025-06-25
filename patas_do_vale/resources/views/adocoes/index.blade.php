@@ -14,6 +14,12 @@
         <a href="{{ route('pessoas.index') }}">Pessoas</a>
     </div>
 
+    <form method="GET" class="filtro_animais" style="margin-bottom: 20px;">
+        <label for="busca">Pesquisar por pessoa:</label>
+        <input type="text" name="busca" id="busca" value="{{ $busca ?? '' }}" placeholder="Digite o nome da pessoa..." />
+        <button type="submit" class="btn_login">Buscar</button>
+    </form>
+
     <div class="table_listagem">
         <table class="tables_list">
             <thead>

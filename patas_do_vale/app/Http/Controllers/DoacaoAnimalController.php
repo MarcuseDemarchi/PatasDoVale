@@ -10,16 +10,24 @@ use Illuminate\Support\Facades\DB;
 
 class DoacaoAnimalController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $doacoes = DoacaoAnimal::with(['pessoa', 'animal'])->get();
-        $pessoas = Pessoa::all();
-        // Animais disponíveis: não estão na tabela de doação
-        $animaisDisponiveis = Animal::whereNotIn('anicodigo', function($query) {
+        $busca = $request->get('busca');
+        $doacoes = \App\Models\DoacaoAnimal::with(['pessoa', 'animal']);
+
+        if ($busca) {
+            $doacoes->whereHas('pessoa', function($q) use ($busca) {
+                $q->where('pesnome', 'like', '%' . $busca . '%');
+            });
+        }
+
+        $doacoes = $doacoes->get();
+        $pessoas = \App\Models\Pessoa::all();
+        $animaisDisponiveis = \App\Models\Animal::whereNotIn('anicodigo', function($query) {
             $query->select('anicodigo')->from('tbdoacaoanimal');
         })->get();
 
-        return view('adocoes.index', compact('doacoes', 'pessoas', 'animaisDisponiveis'));
+    return view('adocoes.index', compact('doacoes', 'pessoas', 'animaisDisponiveis', 'busca'));
     }
 
     public function store(Request $request)
