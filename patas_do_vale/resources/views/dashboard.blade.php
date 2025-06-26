@@ -92,14 +92,14 @@
             <input type="text" name="aninome" placeholder="Nome animal" value="{{ old('aninome') }}" />
             <input type="number" step="0.01" name="anipeso" placeholder="Peso em kg" />
 
-            <select name="aniespecie" class="dropdown_especie">
+            <select name="aniespecie" class="dropdown_especie" >
                 <option value="">Selecione uma espécie</option>
                 @foreach($especies as $especie)
                     <option value="{{ $especie->espcodigo }}">{{ $especie->espnome }}</option>
                 @endforeach
             </select>
 
-            <select name="aniporte">
+            <select name="aniporte"  class="input_select">
                 <option value="1">Pequeno</option>
                 <option value="2">Médio</option>
                 <option value="3">Grande</option>
@@ -124,7 +124,7 @@
             <input type="text" name="aninome" id="edit_nome" placeholder="Nome animal" />
             <input type="number" step="0.01" name="anipeso" id="edit_peso" placeholder="Peso em kg" />
 
-            <select name="aniporte" id="edit_porte">
+            <select name="aniporte" id="edit_porte" class="input_select">
                 <option value="1">Pequeno</option>
                 <option value="2">Médio</option>
                 <option value="3">Grande</option>

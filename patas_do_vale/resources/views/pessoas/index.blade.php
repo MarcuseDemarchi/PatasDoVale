@@ -38,12 +38,13 @@
                     <td>{{ $pessoa->cidade->cidnome }}</td>
                     <td>
                         <button class="btn_login"
-                                onclick="abrirModalEditPessoa(
-                                    {{ $pessoa->pescodigo }},
-                                    '{{ $pessoa->pesnome }}',
-                                    '{{ $pessoa->pesdatanascimento }}',
-                                    {{ $pessoa->cidade->estcodigo ?? 0 }},
-                                    {{ $pessoa->cidcodigo }})">
+                            onclick="abrirModalEditPessoa(
+                                {{ $pessoa->pescodigo }},
+                                '{{ $pessoa->pesnome }}',
+                                '{{ $pessoa->pesdatanascimento }}',
+                                {{ $pessoa->cidade->estcodigo ?? 0 }},
+                                {{ $pessoa->cidcodigo }})"
+                            type="button">
                             Editar
                         </button>
 
@@ -75,14 +76,14 @@
 
             <input type="date" name="pesdatanascimento" placeholder="Data de nascimento" required />
 
-            <select name="estado" id="estado_select" required>
+            <select name="estado" id="estado_select" class="input_select" required>
                 <option value="">Selecione um estado</option>
                 @foreach($estados as $estado)
                     <option value="{{ $estado->estcodigo }}">{{ $estado->estnome }}</option>
                 @endforeach
             </select>
 
-            <select name="cidcodigo" id="cidade_select" required>
+            <select name="cidcodigo" id="cidade_select" class="input_select" required>
                 <option value="">Selecione uma cidade</option>
             </select>
 
@@ -91,30 +92,27 @@
     </div>
 </x-modal>
 
-{{-- Modal Editar Pessoa --}}
 <x-modal id="box_modal_edit">
     <div class="modal_header">
         <h1>Editar Pessoa</h1>
         <x-css-close id="close_classe_modal_edit"/>
     </div>
-
     <div class="modal_content">
         <form id="form_edit" method="POST">
             @csrf
             @method('PUT')
 
             <input type="text" name="pesnome" id="edit_nome" placeholder="Nome pessoa" required />
-
             <input type="date" name="pesdatanascimento" id="edit_data" required />
 
-            <select name="estado" id="edit_estado" required>
+            <select name="estado" id="edit_estado" class="input_select" required>
                 <option value="">Selecione um estado</option>
                 @foreach($estados as $estado)
                     <option value="{{ $estado->estcodigo }}">{{ $estado->estnome }}</option>
                 @endforeach
             </select>
 
-            <select name="cidcodigo" id="edit_cidade" required>
+            <select name="cidcodigo" id="edit_cidade" class="input_select" required>
                 <option value="">Selecione uma cidade</option>
             </select>
 
@@ -127,6 +125,8 @@
 
 @push('scripts')
 <script>
+document.addEventListener('DOMContentLoaded', function() {
+
     // Abrir modal de cadastro
     const btnOpenModal = document.getElementById('btn_cadastrar_pessoa');
     const boxModal = document.getElementById('box_modal');
@@ -142,7 +142,6 @@
         boxModal.classList.remove('opened');
     });
 
-    // Abrir modal de edição
     function abrirModalEditPessoa(codigo, nome, data, estado, cidade) {
         const rotaEditar = "{{ route('pessoas.update', ['pessoa' => 'PESSOACODIGO']) }}";
         const form = document.getElementById('form_edit');
@@ -156,6 +155,7 @@
 
         document.getElementById('box_modal_edit').classList.add('opened');
     }
+    window.abrirModalEditPessoa = abrirModalEditPessoa;
 
     document.getElementById('close_classe_modal_edit').addEventListener('click', () => {
         document.getElementById('box_modal_edit').classList.remove('opened');
@@ -167,9 +167,19 @@
         carregarCidades(estadoId, null, 'cidade_select');
     });
 
-    // 🔥 Função genérica para carregar cidades
+    // Carregar cidades no modal de edição ao trocar o estado
+    document.getElementById('edit_estado').addEventListener('change', function() {
+        const estadoId = this.value;
+        carregarCidades(estadoId, null, 'edit_cidade');
+    });
+
     function carregarCidades(estadoId, cidadeSelecionada = null, campoSelectId) {
         const cidadeSelect = document.getElementById(campoSelectId);
+
+        if (!estadoId) {
+            cidadeSelect.innerHTML = '<option value="">Selecione uma cidade</option>';
+            return;
+        }
 
         cidadeSelect.innerHTML = '<option value="">Carregando...</option>';
 
@@ -181,12 +191,13 @@
                     const option = document.createElement('option');
                     option.value = cidade.cidcodigo;
                     option.textContent = cidade.cidnome;
-                    if (cidadeSelecionada == cidade.cidcodigo) {
+                    if (cidadeSelecionada && cidadeSelecionada == cidade.cidcodigo) {
                         option.selected = true;
                     }
                     cidadeSelect.appendChild(option);
                 });
             });
     }
+});
 </script>
 @endpush

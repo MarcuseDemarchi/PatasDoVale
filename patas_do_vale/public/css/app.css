@@ -444,6 +444,24 @@ form.filtro_animais input[type="text"] {
     padding: 8px 12px;
 }
 
+.input_select {
+    background: var(--g-color);
+    border: 1px solid var(--h-color);
+    border-radius: 5px;
+    color: var(--d-color);
+    padding: 8px 12px;
+    font-size: 15px;
+    margin-bottom: 12px;
+    width: 100%;
+    transition: border 0.2s;
+}
+
+.input_select:focus {
+    outline: none;
+    border: 1.5px solid var(--c-color);
+    background: var(--f-color);
+}
+
 @media (max-width: 600px) {
     form.filtro_animais {
         flex-direction: column;

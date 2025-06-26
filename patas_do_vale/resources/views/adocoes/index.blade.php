@@ -61,14 +61,14 @@
     <div class="modal_content">
         <form action="{{ route('adocoes.store') }}" method="post">
             @csrf
-            <select name="pescodigo" required>
+            <select name="pescodigo" class="input_select" required>
                 <option value="">Selecione uma pessoa</option>
                 @foreach($pessoas as $pessoa)
                     <option value="{{ $pessoa->pescodigo }}">{{ $pessoa->pesnome }}</option>
                 @endforeach
             </select>
 
-            <select name="anicodigo" required>
+            <select name="anicodigo"  class="input_select" required>
                 <option value="">Selecione um animal</option>
                 @foreach($animaisDisponiveis as $animal)
                     <option value="{{ $animal->anicodigo }}">{{ $animal->anipelido }}</option>

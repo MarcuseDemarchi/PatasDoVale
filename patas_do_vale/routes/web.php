@@ -21,6 +21,10 @@ Route::middleware(['throttle:login-attempts'])->group(function () {
     Route::post('/login', [AuthController::class, 'loginAttempt'])->name('auth');
 });
 
+Route::get('/api/cidades/{estado}', function($estado) {
+    return \App\Models\Cidade::where('estcodigo', $estado)->get();
+});
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard',[DashBoardController::class,'index'])->name('dashboard');
     Route::get('/animais/{id}', [AnimalController::class, 'show'])->name('animais.show');
@@ -33,10 +37,6 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/animais/{id}', [AnimalController::class, 'update'])->name('animais.update');
 
     Route::resource('/dashboard/adocoes', \App\Http\Controllers\DoacaoAnimalController::class)->names('adocoes')->except(['edit', 'update', 'show', 'create']);
-
-    Route::get('/api/cidades/{estado}', function($estado) {
-        return \App\Models\Cidade::where('estcodigo', $estado)->get();
-    });
 });
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');

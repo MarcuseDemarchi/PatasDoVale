@@ -8,7 +8,7 @@ use App\Models\Estado;
 
 class PessoaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $busca = $request->get('busca');
         $query = \App\Models\Pessoa::query();
